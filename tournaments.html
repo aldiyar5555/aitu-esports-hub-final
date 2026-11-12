@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AITU Esports Hub - Tournaments & API</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">🎮 AITU Esports Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-menu navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="tournaments.html">Tournaments</a></li>
+          <li class="nav-item"><a class="nav-link" href="teams.html">Teams & CRUD</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="register.html">Registration</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2">
+          <div class="btn-group btn-group-sm">
+            <button id="fontDecreaseBtn" class="btn btn-outline-secondary text-white">A-</button>
+            <button id="fontResetBtn" class="btn btn-outline-secondary text-white">A</button>
+            <button id="fontIncreaseBtn" class="btn btn-outline-secondary text-white">A+</button>
+          </div>
+          <button id="themeToggleBtn" class="btn btn-outline-light btn-sm">🌙 Dark Mode</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center flex-wrap mb-4">
+      <h1 class="mb-0">Esports Tournaments & Live Deals API</h1>
+      <button id="refreshApiBtn" class="btn btn-outline-primary btn-sm">🔄 Reload API Data</button>
+    </div>
+
+    <!-- Advanced Search, Filtering & Sorting Controls (Additional Feature 3) -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <input type="text" id="searchInput" class="form-control" placeholder="Search tournament by title...">
+      </div>
+      <div class="col-md-3">
+        <select id="gameFilter" class="form-select">
+          <option value="All">All Disciplines</option>
+          <option value="CS2">Counter-Strike 2</option>
+          <option value="Dota 2">Dota 2</option>
+          <option value="Valorant">Valorant</option>
+          <option value="FC 24">FC 24</option>
+          <option value="API Promo">API External Events</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select id="sortSelect" class="form-select">
+          <option value="default">Sort By: Default</option>
+          <option value="prizeDesc">Prize Pool: High to Low</option>
+          <option value="prizeAsc">Prize Pool: Low to High</option>
+          <option value="titleAsc">Title: A to Z</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button id="resetFiltersBtn" class="btn btn-secondary w-100">Reset</button>
+      </div>
+    </div>
+
+    <!-- API Status States (Loading / Error / Success) -->
+    <div id="apiStateContainer" class="mb-3"></div>
+
+    <!-- Dynamic Tournament Cards Grid -->
+    <div class="row" id="tournamentsGrid"></div>
+
+    <!-- Persistent Favorites Section (localStorage) -->
+    <div class="mt-5 p-4 border rounded bg-light">
+      <div class="d-flex justify-content-between align-items-center">
+        <h3 class="mb-0">⭐ Saved Favorite Tournaments (<span id="favCount">0</span>)</h3>
+        <button id="clearFavoritesBtn" class="btn btn-sm btn-outline-danger">Clear All Favorites</button>
+      </div>
+      <p class="text-muted small mt-1">Saved automatically in browser localStorage.</p>
+      <ul id="favoritesList" class="list-group mt-3">
+        <li class="list-group-item text-muted">No favorite tournaments added yet.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-white text-center py-3 mt-5">
+    <div class="container">
+      <p class="mb-0">&copy; 2026 AITU Esports Hub.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/tournaments.js"></script>
+  <script src="js/jquery-effects.js"></script>
+</body>
+</html>
